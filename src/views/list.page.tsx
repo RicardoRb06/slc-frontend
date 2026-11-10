@@ -10,7 +10,7 @@ interface ListPageProps<T> {
     route: string;
 }
 
-export function ListPage<T extends idItem>({getItems, columns, route}: ListPageProps<T>) {
+export function ListPage<T extends idItem>({ getItems, columns, route }: ListPageProps<T>) {
     const [data, setData] = useState<T[]>([]);
 
     useEffect(() => {
@@ -21,19 +21,19 @@ export function ListPage<T extends idItem>({getItems, columns, route}: ListPageP
 
     return (
         <div className="my-8 mx-16">
-            <div className="flex justify-between items-center pb-4"> 
+            <div className="flex justify-between items-center pb-4">
                 <SearchBar />
-                <div>
-                <Button variant="outline">
-                    Filtros
-                </Button>
-                <Button>
-                    <PlusIcon data-icon="inline-start" />
-                    Criar
-                </Button>
+                <div className="flex gap-2">
+                    <Button variant="outline">
+                        Filtros
+                    </Button>
+                    <Button>
+                        <PlusIcon data-icon="inline-start" />
+                        Criar
+                    </Button>
                 </div>
             </div>
-            <ListItems<T>  data={data} columns={columns} route={route}/>
+            <ListItems<T> data={data} columns={columns} route={route} />
         </div>
     )
 }
