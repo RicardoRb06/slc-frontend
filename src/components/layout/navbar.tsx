@@ -31,22 +31,22 @@ export function Navbar() {
                                 <NavigationMenuTrigger>Carros</NavigationMenuTrigger>
                                 <NavigationMenuContent>
                                     <NavigationMenuLink>
-                                        <Link to="/game" className={navigationMenuTriggerStyle()}>
+                                        <Link to="/carros" className={navigationMenuTriggerStyle()}>
                                             Carros
                                         </Link>
                                     </NavigationMenuLink>
                                     <NavigationMenuLink>
-                                        <Link to="/game2" className={navigationMenuTriggerStyle()}>
+                                        <Link to="/modelos" className={navigationMenuTriggerStyle()}>
                                             Modelos
                                         </Link>
                                     </NavigationMenuLink>
                                     <NavigationMenuLink>
-                                        <Link to="/game2" className={navigationMenuTriggerStyle()}>
+                                        <Link to="/marcas" className={navigationMenuTriggerStyle()}>
                                             Marcas
                                         </Link>
                                     </NavigationMenuLink>
                                     <NavigationMenuLink>
-                                        <Link to="/game2" className={navigationMenuTriggerStyle()}>
+                                        <Link to="/categorias" className={navigationMenuTriggerStyle()}>
                                             Categorias
                                         </Link>
                                     </NavigationMenuLink>
@@ -57,12 +57,12 @@ export function Navbar() {
                                 <NavigationMenuTrigger>Clientes</NavigationMenuTrigger>
                                 <NavigationMenuContent>
                                     <NavigationMenuLink>
-                                        <Link to="/profile" className={navigationMenuTriggerStyle()}>
+                                        <Link to="/clientes" className={navigationMenuTriggerStyle()}>
                                             Clientes
                                         </Link>
                                     </NavigationMenuLink>
                                     <NavigationMenuLink>
-                                        <Link to="/profile" className={navigationMenuTriggerStyle()}>
+                                        <Link to="/cnh" className={navigationMenuTriggerStyle()}>
                                             CNH
                                         </Link>
                                     </NavigationMenuLink>
@@ -73,22 +73,22 @@ export function Navbar() {
                                 <NavigationMenuTrigger>Meu Perfil</NavigationMenuTrigger>
                                 <NavigationMenuContent>
                                     <NavigationMenuLink>
-                                        <Link to="/profile" className={navigationMenuTriggerStyle()}>
+                                        <Link to="/perfil" className={navigationMenuTriggerStyle()}>
                                             Perfil
                                         </Link>
                                     </NavigationMenuLink>
                                     <NavigationMenuLink>
-                                        <Link to="/profile" className={navigationMenuTriggerStyle()}>
+                                        <Link to="/historico-locacoes" className={navigationMenuTriggerStyle()}>
                                             Historico de locações
                                         </Link>
                                     </NavigationMenuLink>
                                     <NavigationMenuLink>
-                                        <Link to="/profile" className={navigationMenuTriggerStyle()}>
+                                        <Link to="/configuracoes" className={navigationMenuTriggerStyle()}>
                                             Configurações
                                         </Link>
                                     </NavigationMenuLink>
                                     <NavigationMenuLink>
-                                        <Link to="/settings" className={navigationMenuTriggerStyle()}>
+                                        <Link to="/configuracoes" className={navigationMenuTriggerStyle()}>
                                             <p className="text-destructive">Sair</p>
                                         </Link>
                                     </NavigationMenuLink>
