@@ -7,13 +7,13 @@ export interface ColumnConfig<T> {
     label: string;
 }
 
-interface ListProps<T> {
+export interface ListProps<T> {
     data: T[]
     columns: ColumnConfig<T>[];
     route: string;
 }
 
-interface idItem {
+export interface idItem {
     id: string;
 }
 
