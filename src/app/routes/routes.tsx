@@ -1,6 +1,12 @@
 import { Layout } from '@/components/layout/layout';
+import { getBrand } from '@/shared/api/brand.api';
 import { getCars } from '@/shared/api/cars.api';
+import { getCategory } from '@/shared/api/category.api';
+import { getModel } from '@/shared/api/model.api';
+import { brandColumns, type Brand } from '@/shared/types/brand';
 import { carColumns, type Car } from '@/shared/types/cars';
+import { categoryColumns, type Category } from '@/shared/types/category';
+import { modelColumns, type Model } from '@/shared/types/model';
 import { Homepage } from '@/views/homepage';
 import { ListItems } from '@/views/list-items';
 import { Route, Routes } from 'react-router-dom';
@@ -11,9 +17,9 @@ export function AppRoutes(){
             <Route element={<Layout />}>
                 <Route path='/' element={<Homepage />} />
                 <Route path='/carros' element={<ListItems<Car> getItems={() => getCars()} columns={carColumns} route="carros" />} />
-                <Route path='/modelos' element={<ListItems<Car> getItems={() => getCars()} columns={carColumns} route="modelos" />} />
-                <Route path='/marcas' element={<ListItems<Car> getItems={() => getCars()} columns={carColumns} route="marcas" />} />
-                <Route path='/categorias' element={<ListItems<Car> getItems={() => getCars()} columns={carColumns} route="categorias" />} />
+                <Route path='/modelos' element={<ListItems<Model> getItems={() => getModel()} columns={modelColumns} route="modelos" />} />
+                <Route path='/marcas' element={<ListItems<Brand> getItems={() => getBrand()} columns={brandColumns} route="marcas" />} />
+                <Route path='/categorias' element={<ListItems<Category> getItems={() => getCategory()} columns={categoryColumns} route="categorias" />} />
             </Route>
         </Routes>
     )
