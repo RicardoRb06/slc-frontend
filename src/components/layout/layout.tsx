@@ -6,7 +6,9 @@ export function Layout() {
     return (
         <div className="min-h-dvh flex flex-col bg-background">
             <Navbar />
-            <Outlet />
+            <main className="flex-1">
+                <Outlet />
+            </main>
             <Footer />
         </div>
     );
