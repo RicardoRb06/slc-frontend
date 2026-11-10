@@ -21,10 +21,10 @@ export function ListItems<T extends idItem>({data, columns, route}: ListProps<T>
     const navigate = useNavigate();
 
     return (
-        <div className="w-full border-x border-b bg-card">
+        <div>
             <Table>
-                <TableHeader className="bg-muted/60">
-                    <TableRow className="border-t hover:bg-transparent">
+                <TableHeader>
+                    <TableRow className="hover:bg-transparent">
                         {columns.map((col) => (
                             <TableHead key={String(col.key)} className="font-semibold text-foreground">
                                 {col.label}
