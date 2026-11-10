@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ListItems, type ColumnConfig, type idItem } from "../components/ui/list-items";
 import { Button } from "@/components/ui/button";
 import { SearchBar } from "@/components/ui/search-bar";
-import { Icon, PlusIcon } from "lucide-react";
+import { PlusIcon } from "lucide-react";
 
 interface ListPageProps<T> {
     getItems: () => Promise<T[]>;
