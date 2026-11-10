@@ -1,4 +1,4 @@
-import type { ColumnConfig } from "@/views/list-items";
+import type { ColumnConfig } from "@/components/ui/list-items";
 
 export const categoryColumns: ColumnConfig<Category>[] = [
   { key: "nome", label: "Nome" },
