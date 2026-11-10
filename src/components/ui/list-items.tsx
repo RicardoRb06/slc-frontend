@@ -38,8 +38,7 @@ export function ListItems<T extends idItem>({data, columns, route}: ListProps<T>
                 <TableBody>
                     {data.map((item) => (
                         <TableRow 
-                            key={item.id} 
-                            onClick={() => navigate(`/${route}/${item.id}`)} 
+                            key={item.id}
                             className="cursor-pointer transition-colors hover:bg-muted/50"
                         >
                             {columns.map((col) => (
