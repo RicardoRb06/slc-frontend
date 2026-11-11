@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { PenIcon, TrashIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export interface ColumnConfig<T> {
@@ -17,7 +18,7 @@ export interface idItem {
     id: string;
 }
 
-export function ListItems<T extends idItem>({data, columns, route}: ListProps<T>) {
+export function ListItems<T extends idItem>({ data, columns, route }: ListProps<T>) {
     const navigate = useNavigate();
 
     return (
@@ -37,9 +38,8 @@ export function ListItems<T extends idItem>({data, columns, route}: ListProps<T>
                 </TableHeader>
                 <TableBody>
                     {data.map((item) => (
-                        <TableRow 
+                        <TableRow
                             key={item.id}
-                            className="transition-colors hover:bg-muted/50"
                         >
                             {columns.map((col) => (
                                 <TableCell key={String(col.key)} className="py-3.5">
@@ -47,15 +47,30 @@ export function ListItems<T extends idItem>({data, columns, route}: ListProps<T>
                                 </TableCell>
                             ))}
                             <TableCell className="text-right py-3.5 pr-6">
-                                <Button 
-                                    size="sm"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        navigate(`/${route}/${item.id}`);
-                                    }}
-                                >
-                                    Ver mais
-                                </Button>
+                                <div className="flex gap-2 justify-end">
+                                    <Button
+                                        size="sm"
+                                        variant="outline"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            navigate(`/${route}/${item.id}`);
+                                        }}
+                                    >
+                                        <PenIcon />
+                                        Editar
+                                    </Button>
+                                    <Button
+                                        size="sm"
+                                        variant="destructive"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            navigate(`/${route}/${item.id}`);
+                                        }}
+                                    >
+                                        <TrashIcon />
+                                        Excluir
+                                    </Button>
+                                </div>
                             </TableCell>
                         </TableRow>
                     ))}
