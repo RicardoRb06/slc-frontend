@@ -39,7 +39,6 @@ export function ListItems<T extends idItem>({data, columns, route}: ListProps<T>
                     {data.map((item) => (
                         <TableRow 
                             key={item.id}
-                            className="transition-colors hover:bg-muted/50"
                         >
                             {columns.map((col) => (
                                 <TableCell key={String(col.key)} className="py-3.5">
