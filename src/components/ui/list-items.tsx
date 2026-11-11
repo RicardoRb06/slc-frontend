@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { PenIcon, TrashIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export interface ColumnConfig<T> {
@@ -46,14 +47,27 @@ export function ListItems<T extends idItem>({data, columns, route}: ListProps<T>
                                 </TableCell>
                             ))}
                             <TableCell className="text-right py-3.5 pr-6">
-                                <Button 
+                                <Button
                                     size="sm"
+                                    variant="outline"
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         navigate(`/${route}/${item.id}`);
                                     }}
                                 >
-                                    Ver mais
+                                    <PenIcon />
+                                    Editar
+                                </Button>
+                                <Button 
+                                    size="sm"
+                                    variant="destructive"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        navigate(`/${route}/${item.id}`);
+                                    }}
+                                >
+                                    <TrashIcon />
+                                    Excluir
                                 </Button>
                             </TableCell>
                         </TableRow>
