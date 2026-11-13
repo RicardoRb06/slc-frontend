@@ -12,6 +12,7 @@ interface ListPageProps<T> {
 
 export function ListPage<T extends idItem>({ getItems, columns, route }: ListPageProps<T>) {
     const [data, setData] = useState<T[]>([]);
+    const [search, setSearch] = useState('');
 
     useEffect(() => {
         getItems().then((response) => {
@@ -19,10 +20,22 @@ export function ListPage<T extends idItem>({ getItems, columns, route }: ListPag
         })
     }, [getItems]);
 
+    const filteredData = () => {
+        const query = search.trim().toLowerCase();
+
+        if(!query) return data;
+
+        return data.filter((element) =>
+            Object.values(element).some((val) =>
+                String(val ?? '').toLowerCase().includes(query)
+            )
+        )
+    }
+
     return (
         <div className="my-8 mx-16">
             <div className="flex justify-between items-center pb-4">
-                <SearchBar />
+                <SearchBar onSearch={setSearch} />
                 <div className="flex gap-2">
                     <Button variant="outline">
                         Filtros
@@ -33,7 +46,7 @@ export function ListPage<T extends idItem>({ getItems, columns, route }: ListPag
                     </Button>
                 </div>
             </div>
-            <ListItems<T> data={data} columns={columns} route={route} />
+            <ListItems<T> data={filteredData()} columns={columns} route={route} />
         </div>
     )
 }
