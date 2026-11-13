@@ -1,6 +1,6 @@
 import { logout, me } from "@/shared/api/user.api";
 import type { User } from "@/shared/types/user";
-import { createContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useEffect, useState, useContext, type ReactNode } from "react";
 
 interface AuthContextData {
     user: User | null;
@@ -10,7 +10,7 @@ interface AuthContextData {
     logout: () => Promise<void>;
 }
 
-const AuthContext = createContext<AuthContextData | undefined>(undefined);
+export const AuthContext = createContext<AuthContextData | undefined>(undefined);
 
 interface AuthProviderProps {
     children: ReactNode;
@@ -51,4 +51,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
             {children}
         </AuthContext.Provider>
     )
+}
+
+export function useAuth() {
+    const context = useContext(AuthContext);
+
+    if (!context) {
+        throw new Error("useAuth deve ser usado dentro de um AuthProvider");
+    }
+
+    return context;
 }
