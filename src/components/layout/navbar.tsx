@@ -10,8 +10,14 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
+import { useAuth } from "@/context/auth.context";
+import { Button } from "../ui/button";
 
 export function Navbar() {
+    const { user, isAuthenticated } = useAuth();
+
+    const isAdmin = user?.cargo === "admin";
+
     return (
         <div className="sticky top-0 z-50 w-full border-b bg-background">
             <div className="mx-auto flex h-16 max-w-screen-2xl items-center justify-between gap-4 px-4 md:px-8">
@@ -27,73 +33,88 @@ export function Navbar() {
                     <NavigationMenu>
                         <NavigationMenuList>
 
-                            <NavigationMenuItem>
-                                <NavigationMenuTrigger>Carros</NavigationMenuTrigger>
-                                <NavigationMenuContent>
-                                    <NavigationMenuLink>
-                                        <Link to="/carros" className={navigationMenuTriggerStyle()}>
-                                            Carros
-                                        </Link>
-                                    </NavigationMenuLink>
-                                    <NavigationMenuLink>
-                                        <Link to="/modelos" className={navigationMenuTriggerStyle()}>
-                                            Modelos
-                                        </Link>
-                                    </NavigationMenuLink>
-                                    <NavigationMenuLink>
-                                        <Link to="/marcas" className={navigationMenuTriggerStyle()}>
-                                            Marcas
-                                        </Link>
-                                    </NavigationMenuLink>
-                                    <NavigationMenuLink>
-                                        <Link to="/categorias" className={navigationMenuTriggerStyle()}>
-                                            Categorias
-                                        </Link>
-                                    </NavigationMenuLink>
-                                </NavigationMenuContent>
-                            </NavigationMenuItem>
+                            { isAuthenticated && (
+                                <>
+                                    { isAdmin && (
+                                        <>
+                                            <NavigationMenuItem>
+                                                <NavigationMenuTrigger>Carros</NavigationMenuTrigger>
+                                                <NavigationMenuContent>
+                                                    <NavigationMenuLink>
+                                                        <Link to="/carros" className={navigationMenuTriggerStyle()}>
+                                                            Carros
+                                                        </Link>
+                                                    </NavigationMenuLink>
+                                                    <NavigationMenuLink>
+                                                        <Link to="/modelos" className={navigationMenuTriggerStyle()}>
+                                                            Modelos
+                                                        </Link>
+                                                    </NavigationMenuLink>
+                                                    <NavigationMenuLink>
+                                                        <Link to="/marcas" className={navigationMenuTriggerStyle()}>
+                                                            Marcas
+                                                        </Link>
+                                                    </NavigationMenuLink>
+                                                    <NavigationMenuLink>
+                                                        <Link to="/categorias" className={navigationMenuTriggerStyle()}>
+                                                            Categorias
+                                                        </Link>
+                                                    </NavigationMenuLink>
+                                                </NavigationMenuContent>
+                                            </NavigationMenuItem>
 
-                            <NavigationMenuItem>
-                                <NavigationMenuTrigger>Clientes</NavigationMenuTrigger>
-                                <NavigationMenuContent>
-                                    <NavigationMenuLink>
-                                        <Link to="/clientes" className={navigationMenuTriggerStyle()}>
-                                            Clientes
-                                        </Link>
-                                    </NavigationMenuLink>
-                                    <NavigationMenuLink>
-                                        <Link to="/cnh" className={navigationMenuTriggerStyle()}>
-                                            CNH
-                                        </Link>
-                                    </NavigationMenuLink>
-                                </NavigationMenuContent>
-                            </NavigationMenuItem>
+                                            <NavigationMenuItem>
+                                                <NavigationMenuTrigger>Clientes</NavigationMenuTrigger>
+                                                <NavigationMenuContent>
+                                                    <NavigationMenuLink>
+                                                        <Link to="/clientes" className={navigationMenuTriggerStyle()}>
+                                                            Clientes
+                                                        </Link>
+                                                    </NavigationMenuLink>
+                                                    <NavigationMenuLink>
+                                                        <Link to="/cnh" className={navigationMenuTriggerStyle()}>
+                                                            CNH
+                                                        </Link>
+                                                    </NavigationMenuLink>
+                                                </NavigationMenuContent>
+                                            </NavigationMenuItem>
+                                        </>
+                                    )}
 
-                            <NavigationMenuItem>
-                                <NavigationMenuTrigger>Meu Perfil</NavigationMenuTrigger>
-                                <NavigationMenuContent>
-                                    <NavigationMenuLink>
-                                        <Link to="/perfil" className={navigationMenuTriggerStyle()}>
-                                            Perfil
-                                        </Link>
-                                    </NavigationMenuLink>
-                                    <NavigationMenuLink>
-                                        <Link to="/historico-locacoes" className={navigationMenuTriggerStyle()}>
-                                            Historico de locações
-                                        </Link>
-                                    </NavigationMenuLink>
-                                    <NavigationMenuLink>
-                                        <Link to="/configuracoes" className={navigationMenuTriggerStyle()}>
-                                            Configurações
-                                        </Link>
-                                    </NavigationMenuLink>
-                                    <NavigationMenuLink>
-                                        <Link to="/configuracoes" className={navigationMenuTriggerStyle()}>
-                                            <p className="text-destructive">Sair</p>
-                                        </Link>
-                                    </NavigationMenuLink>
-                                </NavigationMenuContent>
-                            </NavigationMenuItem>
+                                    <NavigationMenuItem>
+                                        <NavigationMenuTrigger>Meu Perfil</NavigationMenuTrigger>
+                                        <NavigationMenuContent>
+                                            <NavigationMenuLink>
+                                                <Link to="/perfil" className={navigationMenuTriggerStyle()}>
+                                                    Perfil
+                                                </Link>
+                                            </NavigationMenuLink>
+                                            <NavigationMenuLink>
+                                                <Link to="/historico-locacoes" className={navigationMenuTriggerStyle()}>
+                                                    Historico de locações
+                                                </Link>
+                                            </NavigationMenuLink>
+                                            <NavigationMenuLink>
+                                                <Link to="/configuracoes" className={navigationMenuTriggerStyle()}>
+                                                    Configurações
+                                                </Link>
+                                            </NavigationMenuLink>
+                                            <NavigationMenuLink>
+                                                <Link to="/configuracoes" className={navigationMenuTriggerStyle()}>
+                                                    <p className="text-destructive">Sair</p>
+                                                </Link>
+                                            </NavigationMenuLink>
+                                        </NavigationMenuContent>
+                                    </NavigationMenuItem>
+                                </>
+                            )}
+
+                            { !isAuthenticated && (
+                                <>
+                                    <Button variant="outline">Registrar</Button>
+                                    <Button>Login</Button>
+                                </>
+                            )}
                         </NavigationMenuList>
                     </NavigationMenu>
                     <AnimatedThemeToggler />
