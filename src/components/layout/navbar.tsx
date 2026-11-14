@@ -9,7 +9,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
 import { useAuth } from "@/context/auth.context";
 import { Button } from "../ui/button";
 
@@ -117,7 +116,6 @@ export function Navbar() {
                             )}
                         </NavigationMenuList>
                     </NavigationMenu>
-                    <AnimatedThemeToggler />
                 </div>
             </div>
         </div>
