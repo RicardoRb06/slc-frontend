@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { WordMark } from "@/components/ui/word-mark";
 import {
   NavigationMenu,
@@ -14,6 +14,7 @@ import { Button } from "../ui/button";
 
 export function Navbar() {
     const { user, isAuthenticated } = useAuth();
+    const navigate = useNavigate();
 
     const isAdmin = user?.cargo === "admin";
 
@@ -110,8 +111,8 @@ export function Navbar() {
 
                             { !isAuthenticated && (
                                 <>
-                                    <Button variant="outline">Registrar</Button>
-                                    <Button>Login</Button>
+                                    <Button variant="ghost" onClick={() => navigate("/register")}>Registrar</Button>
+                                    <Button onClick={() => navigate("/login")}>Login</Button>
                                 </>
                             )}
                         </NavigationMenuList>
