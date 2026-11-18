@@ -40,12 +40,6 @@ export function Map({ locate }: MapProps) {
         map.boxZoom.disable();
 
         map.on("load", () => {
-            console.table(
-            map.getStyle().layers.map(layer => ({
-            id: layer.id,
-            type: layer.type,
-        }))
-    );
             paintMap(map);
         })
 
