@@ -1,21 +1,31 @@
+import { api } from "@/config/axios";
 import type { User } from "../types/user";
 
-export async function login(user: User) {
-    localStorage.setItem(import.meta.env.VITE_LOCALSTORAGE_USER, JSON.stringify(user));
+export async function register(user: User) {
+    //api.post("");
+}
+
+export async function login(email: string, password: string) {
+    const response = await api.get("/users");
+    let localStorageUser = null;
+
+    response.data.map((user: User) => {
+        if(user.email === email) {
+            localStorageUser = user;
+        }
+    });
+
+    localStorage.setItem(import.meta.env.VITE_LOCALSTORAGE_USER, JSON.stringify(localStorageUser));
 }
 
 export async function me(): Promise<User | null> {
-    const user = localStorage.getItem(import.meta.env.VITE_LOCALSTORAGE_USER);
+    const user = localStorage.gettItem(import.meta.env.VITE_LOCALSTORAGE_USER);
 
-    if(!user) {
-        return null;
-    }
-
-    try {
+    if(user) {
         return JSON.parse(user) as User;
-    } catch {
-        return null;
     }
+
+    return null;
 }
 
 export async function logout() {
