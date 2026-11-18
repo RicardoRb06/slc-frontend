@@ -10,10 +10,12 @@ import { modelColumns, type Model } from '@/shared/types/model';
 import { Homepage } from '@/views/homepage';
 import { Route, Routes } from 'react-router-dom';
 import { ListPage } from '@/views/list.page';
+import { LoginPage } from '@/views/login.page';
 
 export function AppRoutes(){
     return (
         <Routes>
+            <Route path='/login' element={<LoginPage />} />
             <Route element={<Layout />}>
                 <Route path='/' element={<Homepage />} />
                 <Route path='/carros' element={<ListPage<Car> getItems={() => getCars()} columns={carColumns} route="carros" />} />
