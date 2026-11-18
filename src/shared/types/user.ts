@@ -1,11 +1,8 @@
-export const Role = {
-    ADMIN: "admin",
-    CLIENT: "client",
-} as const;
-
-export type Role = (typeof Role)[keyof typeof Role];
-
 export interface User {
+    id: string;
     nome: string;
-    cargo: Role;
+    email: string;
+    cpf: string
+    telefone: string
+    isAdmin: boolean;
 }
