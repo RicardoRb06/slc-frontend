@@ -1,4 +1,5 @@
 import { useAuth } from "@/context/auth.context"
+import { login } from "@/shared/api/user.api";
 import { useState } from "react";
 
 export function useLogin() {
@@ -6,7 +7,7 @@ export function useLogin() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
 
-    const login = async (name: string, password: string) => {
+    const executeLogin = async (name: string, password: string): Promise<boolean> => {
         try {
             setIsLoading(true);
             setError("");
@@ -15,16 +16,20 @@ export function useLogin() {
 
             await refreshUser();
 
+            return true;
+
         } catch {
             setError("Não foi possível realizar o login");
 
+            return false;
+            
         } finally {
             setIsLoading(false)
         }
     }
 
     return {
-        login,
+        executeLogin,
         isLoading,
         error,
     }
