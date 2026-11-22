@@ -12,18 +12,14 @@ export function CarRegisterPage() {
     const params = useParams();
 
     const [car, setCar] = useState<Car>();
-    const [id, setId] = useState('');
-
-    const [models, setModels] = useState<Model[]>()
+    const [models, setModels] = useState<Model[]>();
 
     async function getCarData() {
         if (!params.idParam) {
-            return null;
         }
 
-        await getCarById(params.idParam).then((response) => {
-            setCar(response);
-        });
+        const response = await getCarById(params.idParam);
+        setCar(response);
     }
 
     async function getModels() {
@@ -32,8 +28,9 @@ export function CarRegisterPage() {
     }
 
     useEffect(() => {
+        getModels();
         getCarData();
-    }, [id])
+    }, []);
 
     if (!models) return null;
     if (!car) return null;
@@ -65,7 +62,15 @@ export function CarRegisterPage() {
                                 />
                             </div>
                             <div>
-                                <select>
+                                <select
+                                    value={car.modelo.id}
+                                    onChange={(e) => {
+                                        const selectedModel = models.find((m) => String(m.id) === e.target.value);
+                                        if (selectedModel) {
+                                            setCar({ ...car, modelo: selectedModel });
+                                        }
+                                    }}
+                                >
                                     {models?.map((model) => (
                                         <option key={model.id} value={model.id}>
                                             {model.nome}
@@ -90,7 +95,7 @@ export function CarRegisterPage() {
                                     value={car.ano}
                                     className='form-control'
                                     name='ano'
-                                    onChange={(e) => setCar({ ...car, ano: e.target.value })}
+                                    onChange={(e) => setCar({ ...car, ano: e.target.value})}
                                 />
                             </div>
                             <div className="flex gap-2">

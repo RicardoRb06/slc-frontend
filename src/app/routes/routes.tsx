@@ -37,7 +37,7 @@ export function AppRoutes(){
                         <Route path='/listagem-modelos' element={<ListPage<Model> getItems={() => getModel()} columns={modelColumns} route="modelos" />} />
                         <Route path='/listagem-marcas' element={<ListPage<Brand> getItems={() => getBrand()} columns={brandColumns} route="marcas" />} />
                         <Route path='/listagem-categorias' element={<ListPage<Category> getItems={() => getCategory()} columns={categoryColumns} route="categorias" />} />
-                        <Route path='/cadastro-carros' element=<CarRegisterPage /> />
+                        <Route path='/cadastro-carros/:idParam?' element={<CarRegisterPage />} />
                         <Route path='/cadastro-modelos' element={<ListPage<Model> getItems={() => getModel()} columns={modelColumns} route="modelos" />} />
                         <Route path='/cadastro-marcas' element={<ListPage<Brand> getItems={() => getBrand()} columns={brandColumns} route="marcas" />} />
                         <Route path='/cadastro-categorias' element={<ListPage<Category> getItems={() => getCategory()} columns={categoryColumns} route="categorias" />} />
