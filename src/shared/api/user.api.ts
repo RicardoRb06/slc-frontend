@@ -15,11 +15,15 @@ export async function login(email: string, password: string) {
         }
     });
 
+    if(localStorageUser === null) {
+        throw new Error;
+    }
+
     localStorage.setItem(import.meta.env.VITE_LOCALSTORAGE_USER, JSON.stringify(localStorageUser));
 }
 
 export async function me(): Promise<User | null> {
-    const user = localStorage.gettItem(import.meta.env.VITE_LOCALSTORAGE_USER);
+    const user = localStorage.getItem(import.meta.env.VITE_LOCALSTORAGE_USER);
 
     if(user) {
         return JSON.parse(user) as User;
