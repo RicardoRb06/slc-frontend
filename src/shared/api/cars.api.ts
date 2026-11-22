@@ -5,3 +5,8 @@ export async function getCars(): Promise<Car[]> {
     const response = await api.get("/carros");
     return response.data;
 }
+
+export async function getCarById(id: string): Promise<Car> {
+    const response = await api.get(`/carros/${id}`);
+    return response.data;
+}

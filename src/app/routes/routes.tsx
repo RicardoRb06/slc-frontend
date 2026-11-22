@@ -15,6 +15,7 @@ import { ProtectedRoutes } from './protected.routes';
 import { UnauthorizedPage } from '@/views/unauthorized.page';
 import { AdminRoutes } from './admin.routes';
 import { ProfilePage } from '@/views/profile.page';
+import { CarRegisterPage } from '@/views/register/car.register';
 
 export function AppRoutes(){
     return (
@@ -32,10 +33,14 @@ export function AppRoutes(){
                     <Route path="/perfil" element={<ProfilePage />} />
 
                     <Route element={<AdminRoutes />}>
-                        <Route path='/carros' element={<ListPage<Car> getItems={() => getCars()} columns={carColumns} route="carros" />} />
-                        <Route path='/modelos' element={<ListPage<Model> getItems={() => getModel()} columns={modelColumns} route="modelos" />} />
-                        <Route path='/marcas' element={<ListPage<Brand> getItems={() => getBrand()} columns={brandColumns} route="marcas" />} />
-                        <Route path='/categorias' element={<ListPage<Category> getItems={() => getCategory()} columns={categoryColumns} route="categorias" />} />
+                        <Route path='/listagem-carros' element={<ListPage<Car> getItems={() => getCars()} columns={carColumns} route="carros" />} />
+                        <Route path='/listagem-modelos' element={<ListPage<Model> getItems={() => getModel()} columns={modelColumns} route="modelos" />} />
+                        <Route path='/listagem-marcas' element={<ListPage<Brand> getItems={() => getBrand()} columns={brandColumns} route="marcas" />} />
+                        <Route path='/listagem-categorias' element={<ListPage<Category> getItems={() => getCategory()} columns={categoryColumns} route="categorias" />} />
+                        <Route path='/cadastro-carros' element=<CarRegisterPage /> />
+                        <Route path='/cadastro-modelos' element={<ListPage<Model> getItems={() => getModel()} columns={modelColumns} route="modelos" />} />
+                        <Route path='/cadastro-marcas' element={<ListPage<Brand> getItems={() => getBrand()} columns={brandColumns} route="marcas" />} />
+                        <Route path='/cadastro-categorias' element={<ListPage<Category> getItems={() => getCategory()} columns={categoryColumns} route="categorias" />} />
                     </Route>
                 </Route>
 

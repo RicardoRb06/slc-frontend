@@ -5,3 +5,8 @@ export async function getModel(): Promise<Model[]> {
     const response = await api.get("/modelos");
     return response.data;
 }
+
+export async function getModelById(id: number): Promise<Model> {
+    const response = await api.get(`/modelos/${id}`)
+    return response.data;
+}
