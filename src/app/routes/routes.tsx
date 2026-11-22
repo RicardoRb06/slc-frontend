@@ -11,17 +11,34 @@ import { Homepage } from '@/views/homepage';
 import { Route, Routes } from 'react-router-dom';
 import { ListPage } from '@/views/list.page';
 import { LoginPage } from '@/views/login.page';
+import { ProtectedRoutes } from './protected.routes';
+import { UnauthorizedPage } from '@/views/unauthorized.page';
+import { AdminRoutes } from './admin.routes';
+import { ProfilePage } from '@/views/profile.page';
 
 export function AppRoutes(){
     return (
         <Routes>
+
             <Route path='/login' element={<LoginPage />} />
+            <Route path='/unauthorized' element={<UnauthorizedPage />} />
+
             <Route element={<Layout />}>
+
                 <Route path='/' element={<Homepage />} />
-                <Route path='/carros' element={<ListPage<Car> getItems={() => getCars()} columns={carColumns} route="carros" />} />
-                <Route path='/modelos' element={<ListPage<Model> getItems={() => getModel()} columns={modelColumns} route="modelos" />} />
-                <Route path='/marcas' element={<ListPage<Brand> getItems={() => getBrand()} columns={brandColumns} route="marcas" />} />
-                <Route path='/categorias' element={<ListPage<Category> getItems={() => getCategory()} columns={categoryColumns} route="categorias" />} />
+
+                <Route element={<ProtectedRoutes />}>
+
+                    <Route path="/perfil" element={<ProfilePage />} />
+
+                    <Route element={<AdminRoutes />}>
+                        <Route path='/carros' element={<ListPage<Car> getItems={() => getCars()} columns={carColumns} route="carros" />} />
+                        <Route path='/modelos' element={<ListPage<Model> getItems={() => getModel()} columns={modelColumns} route="modelos" />} />
+                        <Route path='/marcas' element={<ListPage<Brand> getItems={() => getBrand()} columns={brandColumns} route="marcas" />} />
+                        <Route path='/categorias' element={<ListPage<Category> getItems={() => getCategory()} columns={categoryColumns} route="categorias" />} />
+                    </Route>
+                </Route>
+
             </Route>
         </Routes>
     )
